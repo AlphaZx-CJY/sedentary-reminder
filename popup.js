@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   let currentPhase = null;     // 'work' | 'break' | null
   let stats = { activityCount: 0, pomodoroCompleted: 0, totalWorkMinutes: 0 };
 
+  // 请求通知权限
+  await requestNotificationPermission();
+  
   // 初始化
   await init();
 
@@ -397,6 +400,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         pauseBtn.querySelector('.btn-icon').textContent = '⏸';
         timerStatus.textContent = '点击开始按钮启动';
         break;
+    }
+  }
+
+  // 请求通知权限
+  async function requestNotificationPermission() {
+    try {
+      // 检查当前权限状态
+      const permission = await chrome.permissions.contains({ permissions: ['notifications'] });
+      if (permission) {
+        console.log('✅ 通知权限已授予');
+        return true;
+      }
+      
+      // 请求权限
+      const granted = await chrome.permissions.request({ permissions: ['notifications'] });
+      if (granted) {
+        console.log('✅ 通知权限已获取');
+        return true;
+      } else {
+        console.warn('⚠️ 通知权限被拒绝');
+        timerStatus.textContent = '⚠️ 请允许通知权限以接收提醒';
+        timerStatus.style.color = '#f44336';
+        return false;
+      }
+    } catch (error) {
+      console.error('请求通知权限失败:', error);
+      return false;
     }
   }
 

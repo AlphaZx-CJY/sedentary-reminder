@@ -237,39 +237,74 @@ async function stopReminder() {
 
 // ========== 通知功能 ==========
 
+// 检查并请求通知权限
+async function checkNotificationPermission() {
+  try {
+    // 检查当前权限状态
+    const permission = await chrome.permissions.contains({ permissions: ['notifications'] });
+    if (!permission) {
+      console.warn('通知权限未授予');
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error('检查通知权限失败:', error);
+    return false;
+  }
+}
+
 async function showNotification() {
+  // 检查权限
+  const hasPermission = await checkNotificationPermission();
+  if (!hasPermission) {
+    console.error('无法显示通知：权限未授予');
+    return;
+  }
+  
   await checkAndResetDailyStats();
   
-  await chrome.notifications.create('sedentaryAlert', {
-    type: 'basic',
-    iconUrl: 'icons/icon128.png',
-    title: '🧘 久坐提醒',
-    message: '该起来走走了！久坐伤身，活动一下吧 💪',
-    buttons: [
-      { title: '✓ 已完成活动' }
-    ],
-    priority: 2,
-    requireInteraction: true
-  });
+  try {
+    await chrome.notifications.create('sedentaryAlert', {
+      type: 'basic',
+      iconUrl: chrome.runtime.getURL('icons/icon128.png'),
+      title: '🧘 久坐提醒',
+      message: '该起来走走了！久坐伤身，活动一下吧 💪',
+      priority: 2,
+      requireInteraction: true
+    });
+    console.log('✅ 通知已发送');
+  } catch (error) {
+    console.error('显示通知失败:', error);
+  }
   
   await playNotificationSound('notification');
 }
 
 async function showPomodoroNotification(phase) {
+  const hasPermission = await checkNotificationPermission();
+  if (!hasPermission) {
+    console.error('无法显示通知：权限未授予');
+    return;
+  }
+  
   const title = phase === 'work' ? '🍅 番茄钟 - 开始工作' : '☕ 番茄钟 - 休息时间';
   const message = phase === 'work' 
     ? '休息结束！开始专注工作 25 分钟吧 💪'
     : '工作辛苦啦！休息 5 分钟，活动一下吧 🧘';
   
-  await chrome.notifications.create('pomodoroAlert', {
-    type: 'basic',
-    iconUrl: 'icons/icon128.png',
-    title: title,
-    message: message,
-    buttons: phase === 'break' ? [{ title: '✓ 已完成活动' }] : [],
-    priority: 2,
-    requireInteraction: phase === 'break'
-  });
+  try {
+    await chrome.notifications.create('pomodoroAlert', {
+      type: 'basic',
+      iconUrl: chrome.runtime.getURL('icons/icon128.png'),
+      title: title,
+      message: message,
+      priority: 2,
+      requireInteraction: phase === 'break'
+    });
+    console.log('✅ 番茄钟通知已发送');
+  } catch (error) {
+    console.error('显示番茄钟通知失败:', error);
+  }
 }
 
 // ========== 闹钟监听 ==========
