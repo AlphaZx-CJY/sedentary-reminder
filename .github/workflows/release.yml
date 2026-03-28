@@ -69,7 +69,10 @@ jobs:
             ### 安装方法
             
             **方式一：Edge 商店安装（推荐）**
-            访问 Microsoft Edge 商店搜索"久坐提醒助手"
+            访问 Microsoft Edge 商店安装：https://microsoftedge.microsoft.com/addons/detail/sedentary-reminder/0RDCKCJGSRNH
+            
+            Store ID: `0RDCKCJGSRNH`
+            Product ID: `75f3cdb7-56ec-4be2-85a5-0d1f2a5b6373`
             
             **方式二：手动安装**
             1. 下载 `sedentary-reminder-${{ env.VERSION }}.zip`

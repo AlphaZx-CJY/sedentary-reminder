@@ -65,11 +65,11 @@
 - ✅ 代码与 Chrome 扩展 100% 兼容
 - ✅ Edge 用户越来越多
 
-<a href="https://microsoftedge.microsoft.com/addons/detail/YOUR_EXTENSION_ID" target="_blank">
+<a href="https://microsoftedge.microsoft.com/addons/detail/sedentary-reminder/0RDCKCJGSRNH" target="_blank">
   <img src="https://img.shields.io/badge/Microsoft%20Edge-Get%20Extension-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white" alt="Get from Edge Store">
 </a>
 
-点击上方按钮或访问 [Microsoft Edge 商店](https://microsoftedge.microsoft.com/addons/detail/YOUR_EXTENSION_ID) 安装。
+点击上方按钮或访问 [Microsoft Edge 商店](https://microsoftedge.microsoft.com/addons/detail/sedentary-reminder/0RDCKCJGSRNH) 安装。
 
 > 💡 **提示**: 如果链接无法访问，说明插件还在审核中，请使用下面的手动安装方式。
 > 
