@@ -59,7 +59,13 @@
 
 ### 方式一：Chrome Web Store（推荐）
 
-> 🚧 正在审核中，即将上线...
+<a href="https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID" target="_blank">
+  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-Install%20Now-brightgreen?style=for-the-badge&logo=googlechrome" alt="Install from Chrome Web Store">
+</a>
+
+点击上方按钮或访问 [Chrome Web Store](https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID) 安装。
+
+> 💡 **提示**: 如果链接无法访问，说明插件还在审核中，请使用下面的手动安装方式。
 
 ### 方式二：开发者模式安装
 
