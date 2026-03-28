@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*'  # 推送 v 开头的 tag 时触发，如 v1.0.0, v2.0.0
 
+# 添加权限配置
+permissions:
+  contents: write  # 允许创建 Release 和上传文件
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -54,15 +58,12 @@ jobs:
           echo "📦 包大小:"
           ls -lh sedentary-reminder-${{ env.VERSION }}.zip
       
-      # 创建 Release
+      # 创建 Release 并上传资源（使用软质盛出官方 action）
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ env.VERSION }}
+          name: Release ${{ env.VERSION }}
           body: |
             ## 🧘 久坐提醒助手 ${{ env.VERSION }}
             
@@ -98,14 +99,7 @@ jobs:
             Built with Kimi • Spec Coding 🚀
           draft: false
           prerelease: false
-      
-      # 上传 ZIP 到 Release
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+          files: |
+            sedentary-reminder-${{ env.VERSION }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./sedentary-reminder-${{ env.VERSION }}.zip
-          asset_name: sedentary-reminder-${{ env.VERSION }}.zip
-          asset_content_type: application/zip
