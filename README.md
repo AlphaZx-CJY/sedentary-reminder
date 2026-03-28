@@ -75,13 +75,12 @@
 > 
 > Chrome 用户也可以安装此扩展，因为 Edge 商店扩展完全兼容 Chrome 浏览器！
 
-### 方式二：手动安装（Edge / Chrome 通用）
+### 方式二：从 GitHub Release 下载安装（推荐手动安装）
 
-1. **下载插件**
-   ```bash
-   git clone https://github.com/AlphaZx-CJY/sedentary-reminder.git
-   cd sedentary-reminder
-   ```
+1. **下载最新版本**
+   - 访问 [Releases 页面](https://github.com/AlphaZx-CJY/sedentary-reminder/releases)
+   - 下载最新版本的 `sedentary-reminder-vX.X.X.zip` 文件
+   - 解压到本地文件夹
 
 2. **打开浏览器扩展管理页面**
    - **Edge**: 地址栏输入 `edge://extensions/`
@@ -92,10 +91,22 @@
 
 4. **加载插件**
    - 点击「加载已解压的扩展程序」
-   - 选择 `sedentary-reminder` 文件夹
+   - 选择解压后的文件夹即可安装
 
 5. **完成安装**
    - 插件图标会出现在浏览器右上角工具栏
+
+### 方式三：开发者模式安装（从源码）
+
+```bash
+# 克隆仓库
+git clone https://github.com/AlphaZx-CJY/sedentary-reminder.git
+
+# 进入目录
+cd sedentary-reminder
+
+# 按照方式二的步骤 2-5 加载插件
+```
 
 ---
 

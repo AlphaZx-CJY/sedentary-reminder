@@ -1,0 +1,108 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*'  # 推送 v 开头的 tag 时触发，如 v1.0.0, v2.0.0
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      # 获取版本号
+      - name: Get version
+        id: get_version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "📦 打包版本: $VERSION"
+      
+      # 创建发布目录
+      - name: Prepare release files
+        run: |
+          mkdir -p release
+          cp manifest.json release/
+          cp background.js release/
+          cp popup.html release/
+          cp popup.js release/
+          cp popup.css release/
+          cp offscreen.html release/
+          cp notification.wav release/
+          cp ding.wav release/
+          cp -r icons release/
+      
+      # 打包为 zip
+      - name: Create ZIP package
+        run: |
+          cd release
+          zip -r ../sedentary-reminder-${{ env.VERSION }}.zip . -x "*.DS_Store"
+          cd ..
+          echo "✅ 打包完成: sedentary-reminder-${{ env.VERSION }}.zip"
+      
+      # 验证包内容
+      - name: Verify package
+        run: |
+          echo "📋 包内容列表:"
+          unzip -l sedentary-reminder-${{ env.VERSION }}.zip
+          echo ""
+          echo "📦 包大小:"
+          ls -lh sedentary-reminder-${{ env.VERSION }}.zip
+      
+      # 创建 Release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ env.VERSION }}
+          body: |
+            ## 🧘 久坐提醒助手 ${{ env.VERSION }}
+            
+            ### 安装方法
+            
+            **方式一：Edge 商店安装（推荐）**
+            访问 Microsoft Edge 商店搜索"久坐提醒助手"
+            
+            **方式二：手动安装**
+            1. 下载 `sedentary-reminder-${{ env.VERSION }}.zip`
+            2. 解压到本地文件夹
+            3. 打开 Edge/Chrome 浏览器，地址栏输入 `edge://extensions/` 或 `chrome://extensions/`
+            4. 开启右上角「开发者模式」
+            5. 点击「加载已解压的扩展程序」
+            6. 选择解压后的文件夹即可安装
+            
+            ### 功能特点
+            - 🔔 定时提醒：支持 30/45/60/90/120 分钟间隔
+            - 🍅 番茄模式：25 分钟工作 + 5 分钟休息
+            - 📊 活动统计：记录每日活动次数和专注时长
+            - 🔊 提示音效：可开关的提醒声音
+            
+            ### 兼容性
+            - ✅ Microsoft Edge (Chromium)
+            - ✅ Google Chrome
+            - ✅ Brave 浏览器
+            - ✅ 其他 Chromium 内核浏览器
+            
+            ---
+            Built with Kimi • Spec Coding 🚀
+          draft: false
+          prerelease: false
+      
+      # 上传 ZIP 到 Release
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./sedentary-reminder-${{ env.VERSION }}.zip
+          asset_name: sedentary-reminder-${{ env.VERSION }}.zip
+          asset_content_type: application/zip
