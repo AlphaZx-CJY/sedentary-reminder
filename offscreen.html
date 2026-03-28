@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Player</title>
+</head>
+<body>
+  <script>
+    // 离屏文档 - 用于播放音效
+    // Manifest V3 Service Worker 不能直接播放音频，通过离屏文档实现
+
+    // 预加载音频
+    const dingAudio = new Audio('ding.wav');
+    const notificationAudio = new Audio('notification.wav');
+
+    // 监听来自 background 的消息
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      if (request.action === 'playSound') {
+        try {
+          const audio = request.soundType === 'ding' ? dingAudio : notificationAudio;
+          audio.currentTime = 0;
+          audio.volume = 0.5;
+          audio.play().catch(e => console.log('音频播放失败:', e));
+          sendResponse({ success: true });
+        } catch (error) {
+          console.error('播放音效失败:', error);
+          sendResponse({ error: error.message });
+        }
+      }
+      return true;
+    });
+
+    console.log('Offscreen audio player ready');
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+.temp/
+
+# Chrome Extension packaging
+*.zip
+*.crx
+
+# Screenshots source (if using Photoshop/Sketch)
+*.psd
+*.sketch

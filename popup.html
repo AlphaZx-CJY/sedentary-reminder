@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>久坐提醒助手</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 标题 -->
+    <header class="header">
+      <span class="header-icon">🧘</span>
+      <h1 class="header-title">久坐提醒助手</h1>
+    </header>
+
+    <!-- 模式切换 -->
+    <div class="mode-section">
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="normal">
+          <span class="mode-icon">⏰</span>
+          <span class="mode-label">普通模式</span>
+        </button>
+        <button class="mode-tab" data-mode="pomodoro">
+          <span class="mode-icon">🍅</span>
+          <span class="mode-label">番茄模式</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 倒计时显示 -->
+    <div class="timer-section">
+      <div class="timer-label" id="timerLabel">⏱️ 剩余时间</div>
+      <div class="timer-display" id="timerDisplay">--:--</div>
+      <div class="timer-status" id="timerStatus">点击开始按钮启动提醒</div>
+      <div class="timer-phase" id="timerPhase"></div>
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="control-section">
+      <button class="btn btn-primary" id="startBtn">
+        <span class="btn-icon">▶</span>
+        <span class="btn-text">开始</span>
+      </button>
+      <button class="btn btn-secondary" id="pauseBtn" disabled>
+        <span class="btn-icon">⏸</span>
+        <span class="btn-text">暂停</span>
+      </button>
+    </div>
+
+    <!-- 普通模式设置 -->
+    <div class="settings-section" id="normalSettings">
+      <label class="setting-label" for="intervalSelect">提醒间隔</label>
+      <select class="interval-select" id="intervalSelect">
+        <option value="30">30 分钟</option>
+        <option value="45">45 分钟</option>
+        <option value="60" selected>60 分钟</option>
+        <option value="90">90 分钟</option>
+        <option value="120">120 分钟</option>
+      </select>
+    </div>
+
+    <!-- 番茄模式设置 -->
+    <div class="settings-section pomodoro-settings" id="pomodoroSettings" style="display: none;">
+      <div class="pomodoro-config">
+        <div class="pomodoro-item">
+          <span class="pomodoro-icon">💼</span>
+          <span class="pomodoro-text">工作 25 分钟</span>
+        </div>
+        <div class="pomodoro-arrow">↓</div>
+        <div class="pomodoro-item">
+          <span class="pomodoro-icon">☕</span>
+          <span class="pomodoro-text">休息 5 分钟</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 音效开关 -->
+    <div class="sound-section">
+      <label class="sound-toggle">
+        <input type="checkbox" id="soundToggle" checked>
+        <span class="sound-slider"></span>
+        <span class="sound-label">🔔 提示音效</span>
+      </label>
+    </div>
+
+    <!-- 统计信息 -->
+    <div class="stats-section">
+      <div class="stats-title">📊 今日统计</div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="statActivity">0</div>
+          <div class="stat-label">活动次数</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="statPomodoro">0</div>
+          <div class="stat-label">完成番茄</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="statFocus">0</div>
+          <div class="stat-label">专注(分钟)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 提示信息 -->
+    <div class="tips-section" id="tipsSection">
+      <p class="tips-text">💡 建议每 60 分钟起身活动 5-10 分钟</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
