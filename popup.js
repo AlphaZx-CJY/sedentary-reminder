@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 根据模式更新计时器显示
   function updateTimerDisplayForMode() {
     if (currentMode === 'normal') {
-      const minutes = parseInt(intervalSelect.value);
+      const minutes = parseFloat(intervalSelect.value);
       timerDisplay.textContent = formatTime(minutes * 60 * 1000);
       timerLabel.textContent = '⏱️ 剩余时间';
       timerPhase.textContent = '';
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       let response;
       
       if (currentMode === 'normal') {
-        const minutes = parseInt(intervalSelect.value);
+        const minutes = parseFloat(intervalSelect.value);
         response = await sendMessage({ 
           action: 'start', 
           minutes: minutes 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       // 启动倒计时
       const initialTime = currentMode === 'normal' 
-        ? parseInt(intervalSelect.value) * 60 * 1000
+        ? parseFloat(intervalSelect.value) * 60 * 1000
         : 25 * 60 * 1000;
       startCountdown(initialTime);
       
