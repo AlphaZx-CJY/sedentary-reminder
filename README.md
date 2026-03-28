@@ -15,6 +15,16 @@
   <a href="#更新日志">更新日志</a>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Built%20with-Kimi-blue?style=flat-square&logo=openai" alt="Built with Kimi">
+  <img src="https://img.shields.io/badge/Spec%20Coding-Enabled-success?style=flat-square" alt="Spec Coding">
+  <img src="https://img.shields.io/badge/Manifest-V3-orange?style=flat-square" alt="Manifest V3">
+</p>
+
+---
+
+> 🎯 **开发方式**: 本项目采用 **Spec Coding** 方式开发，由 Kimi AI 根据需求规格说明自动生成完整代码。
+
 ---
 
 ## ✨ 功能特点
@@ -224,4 +234,18 @@ sedentary-reminder/
 
 <p align="center">
   Made with ❤️ for healthier work habits
+</p>
+
+---
+
+## 🙏 致谢
+
+本项目由 **[Kimi](https://kimi.moonshot.cn)** 协助开发完成。
+
+> 💡 **Spec Coding**: 本项目采用 AI 辅助编程方式开发，通过需求规格说明驱动代码生成，展示了人工智能在软件开发中的实际应用能力。
+
+---
+
+<p align="center">
+  <sub>Built with <a href="https://kimi.moonshot.cn">Kimi</a> • Spec Coding 🚀</sub>
 </p>
