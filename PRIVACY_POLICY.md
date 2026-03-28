@@ -85,7 +85,7 @@
 
 如有隐私相关问题，请通过以下方式联系：
 
-- GitHub Issues: https://github.com/yourusername/sedentary-reminder/issues
+- GitHub Issues: https://github.com/AlphaZx-CJY/sedentary-reminder/issues
 - Email: [your-email@example.com]
 
 ## 总结

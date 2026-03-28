@@ -79,7 +79,7 @@
 
 1. **下载插件**
    ```bash
-   git clone https://github.com/yourusername/sedentary-reminder.git
+   git clone https://github.com/AlphaZx-CJY/sedentary-reminder.git
    cd sedentary-reminder
    ```
 
