@@ -57,17 +57,25 @@
 
 ## 📦 安装方法
 
-### 方式一：Chrome Web Store（推荐）
+### 方式一：Microsoft Edge 商店（推荐，免费）
 
-<a href="https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID" target="_blank">
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-Install%20Now-brightgreen?style=for-the-badge&logo=googlechrome" alt="Install from Chrome Web Store">
+**为什么选择 Edge 商店？**
+- ✅ 完全免费（无需支付 $5 开发者费用）
+- ✅ 审核更快
+- ✅ 代码与 Chrome 扩展 100% 兼容
+- ✅ Edge 用户越来越多
+
+<a href="https://microsoftedge.microsoft.com/addons/detail/YOUR_EXTENSION_ID" target="_blank">
+  <img src="https://img.shields.io/badge/Microsoft%20Edge-Get%20Extension-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white" alt="Get from Edge Store">
 </a>
 
-点击上方按钮或访问 [Chrome Web Store](https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID) 安装。
+点击上方按钮或访问 [Microsoft Edge 商店](https://microsoftedge.microsoft.com/addons/detail/YOUR_EXTENSION_ID) 安装。
 
 > 💡 **提示**: 如果链接无法访问，说明插件还在审核中，请使用下面的手动安装方式。
+> 
+> Chrome 用户也可以安装此扩展，因为 Edge 商店扩展完全兼容 Chrome 浏览器！
 
-### 方式二：开发者模式安装
+### 方式二：手动安装（Edge / Chrome 通用）
 
 1. **下载插件**
    ```bash
@@ -75,9 +83,9 @@
    cd sedentary-reminder
    ```
 
-2. **打开 Chrome 扩展管理页面**
-   - 在地址栏输入 `chrome://extensions/`
-   - 或者点击菜单 → 更多工具 → 扩展程序
+2. **打开浏览器扩展管理页面**
+   - **Edge**: 地址栏输入 `edge://extensions/`
+   - **Chrome**: 地址栏输入 `chrome://extensions/`
 
 3. **开启开发者模式**
    - 右上角开启「开发者模式」开关
@@ -165,11 +173,13 @@
 
 ### 技术栈
 
-- **Manifest V3**：Chrome 最新插件标准
-- **Chrome Alarms API**：精准定时，后台运行
-- **Chrome Offscreen API**：离屏文档播放音效
-- **Chrome Storage API**：本地数据持久化
+- **Manifest V3**：最新浏览器扩展标准（Chrome/Edge 通用）
+- **Alarms API**：精准定时，后台运行
+- **Offscreen API**：离屏文档播放音效
+- **Storage API**：本地数据持久化
 - **Service Worker**：按需唤醒，节省资源
+
+> 💡 **兼容性**: 基于 Chromium 内核，完美支持 Chrome、Edge、Brave、Opera 等浏览器
 
 ---
 
